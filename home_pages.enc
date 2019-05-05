@@ -1,0 +1,77 @@
+import 'package:flutter/material.dart';
+import 'package:poki_online/lokasi_page.dart';
+
+class HomePage extends StatelessWidget {
+  static String tag = 'home-page';
+
+  @override
+  Widget build(BuildContext context) {
+    final location = Hero(
+      tag: 'location',
+      child: CircleAvatar(
+        backgroundColor: Colors.transparent,
+        radius: 60.0,
+        child: Image.asset('assets/location.png'),
+      ),
+    );
+    
+
+    final welcome = Center(
+      child: 
+        Text(
+          'Welcome to Poki Online',
+          style: TextStyle(fontSize: 28.0, color: Colors.black),        
+        ),
+    );
+
+    final select = Center(
+      child: Text('Please Select Your Position',
+          style: TextStyle(fontSize: 20.0, color: Colors.black),
+        ),
+    );
+    
+    final tombol = Padding(
+      padding: EdgeInsets.symmetric(vertical: 16.0),
+      child: RaisedButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24)
+        ),
+        onPressed: (){
+          Navigator.of(context).pushNamed(LokasiPage.tag);
+        },
+        padding: EdgeInsets.all(12),
+        color: Colors.green,
+        child: Text('Select Position Now',style: TextStyle(color: Colors.white)),
+      ),
+    );
+
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+        backgroundColor: Colors.green,
+        leading: IconButton(icon:Icon(Icons.home),
+          onPressed:(){
+            Navigator.of(context).pushNamed(HomePage.tag);
+            },
+          )
+        ),
+
+      body: Center(
+        child: ListView(
+          shrinkWrap: true,
+          padding: EdgeInsets.only(left: 24.0, right: 24),
+          children: <Widget>[
+            welcome,
+            select,
+            SizedBox(height: 80.0,),
+            location,
+            SizedBox(height: 24.0),
+            tombol,
+            
+          ],
+        ),
+      ),
+    );
+  }
+}
